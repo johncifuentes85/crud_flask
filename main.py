@@ -33,5 +33,10 @@ def update_user(id):
     controller.update_user(id,name,email,phone,passwd)
     return redirect("/")
 
+@app.route("/delete_user", methods=["POST"])
+def delete_user(id):
+    controller.delete_user(request.form["id"])
+    return redirect("/")
+
 if __name__=="__main__":
     app.run(port=4500, debug=True)

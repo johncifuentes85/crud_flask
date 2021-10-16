@@ -22,20 +22,30 @@ def edit_user(id):
     user = controller.get_user_id(id)
     return render_template("edit_user.html",user=user)
 
-@app.route("update_user", methods=["POST"])
-def update_user(id):
+@app.route("/update_user", methods=["POST"])
+def update_user():
     #obtiende los datos que invoco el empoint
     id = request.form["id"]
     name = request.form["name"]
     email = request.form["email"]
     phone = request.form["phone"]
     passwd = request.form["passwd"]
-    controller.update_user(id,name,email,phone,passwd)
+    print(id)
+    controller.update_user(name,email,phone,passwd,id)
     return redirect("/")
 
 @app.route("/delete_user", methods=["POST"])
-def delete_user(id):
+def delete_user():
     controller.delete_user(request.form["id"])
+    return redirect("/")
+
+@app.route("/save_user", methods=["POST"])
+def save_user():
+    name = request.form["name"]
+    email = request.form["email"]
+    phone = request.form["phone"]
+    passwd = request.form["passwd"]
+    controller.add_user(name, email, phone, passwd)
     return redirect("/")
 
 if __name__=="__main__":

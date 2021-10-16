@@ -5,16 +5,16 @@ from configdb import get_connection
 def add_user(name,email,phone,passwd):
     cnn = get_connection()
     with cnn.cursor() as cursor:
-        cursor.execute("INSER INTO user(name,email,phone,passwd) VALUES (%s,%s,%s,%s)",(name,email,phone,passwd))
+        cursor.execute("INSERT INTO user(name,email,phone,passwd) VALUES (%s,%s,%s,%s)",(name,email,phone,passwd))
         cnn.commit()
         cnn.close()
 
-def update_user(name,email,phone,passwd):
+def update_user(name,email,phone,passwd,id):
     cnn = get_connection()
     with cnn.cursor() as cursor:
-        cursor.execute("UPDATE user SER name = %s, email = %s, phone = %s, passwd = %s WHERE id = %s, (name,email,phone,passwd,id) ")
-        cnn.commit()
-        cnn.close()
+        cursor.execute("UPDATE user SET name = %s, email = %s, phone = %s, passwd = %s WHERE id = %s", (name,email,phone,passwd,id))
+    cnn.commit()
+    cnn.close()
     
 def delete_user(id):
     cnn = get_connection()
@@ -36,7 +36,8 @@ def get_user_id(id):
     cnn = get_connection()
     user = None
     with cnn.cursor() as cursor:
-        cursor.execute("SELECT id, name, phone, passwd FROM user WHERE id = %s", (id))
+        cursor.execute("SELECT id, name, email, phone, passwd FROM user WHERE id = %s", (id))
+        user = cursor.fetchone()
     cnn.close()
     return user
 

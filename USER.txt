@@ -1,0 +1,13 @@
+crear base de datos invoice
+
+tabla con datos (customer) campos id, nitcc, name, status, mobile
+
+tabla con datos (invoice) campos number, date, id, price, balance
+
+se relaciona id=id
+
+notas:
+1. realizar el crud para la tabla customer tenga en cuenta que si el cliente tiene factura no se puede eliminar.
+2. no se puede cambiar el id del cliente.
+3. al eliminar una factura, se debe verificar el saldo(balance) este en cero
+4. opcionalmente, hacer barner y barra de navegacion para la app web.

@@ -11,3 +11,5 @@ notas:
 2. no se puede cambiar el id del cliente.
 3. al eliminar una factura, se debe verificar el saldo(balance) este en cero
 4. opcionalmente, hacer barner y barra de navegacion para la app web.
+
+trabajo para entregar en 15 dias
